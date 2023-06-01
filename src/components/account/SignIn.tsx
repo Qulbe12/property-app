@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Button, Center, FormControl, Heading, HStack, Input, Link, Text, VStack} from "native-base";
 import {useNavigation} from "@react-navigation/native";
+import {signInWithEmailAndPassword} from "firebase/auth"
 import * as yup from "yup"
+import {auth} from "../../config/firebaseConf";
 
 const schema = yup.object().shape({
     phone: yup.string().required("phone is required"),
@@ -16,12 +18,20 @@ const SignIn = () => {
         password: ""
     })
 
+    const signInFunc = async ()=>{
+try {
+    const res = await signInWithEmailAndPassword(auth , form.phone , form.password )
+    console.log(res.user)
+}catch (e) {
+    console.log(e)
+}
+    }
+
     const onSubmit = () => {
         schema
             .validate(form)
             .then(async () => {
-                navigation.navigate("OtpVerification" as never);
-                console.log(form)
+              await  signInFunc()
             })
             .catch((err: yup.ValidationError) => {
                 if (!err.path) return;
