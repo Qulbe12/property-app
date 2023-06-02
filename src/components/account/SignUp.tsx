@@ -4,6 +4,9 @@ import {useNavigation} from "@react-navigation/native";
 import {createUserWithEmailAndPassword} from "firebase/auth"
 import * as yup from 'yup'
 import {auth} from "../../config/firebaseConf";
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-2490535597271516~5927830202';
 
 const schema = yup.object().shape({
     phone: yup.string().required("phone is required"),
@@ -90,7 +93,14 @@ const SignUp = () => {
                     </HStack>
                 </VStack>
             </Box>
-        </Center>
+            <BannerAd
+                unitId={adUnitId}
+                size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+                requestOptions={{
+                    requestNonPersonalizedAdsOnly: true,
+                }}
+            />
+</Center>
     );
 };
 

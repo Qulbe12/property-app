@@ -1,8 +1,8 @@
 import {createStackNavigator} from "@react-navigation/stack";
 import React from "react";
-import SignIn from "../account/SignIn";
-import signUp from "../account/SignUp";
-import OtpVerification from "../account/OtpVerification";
+import SignIn from "../components/account/SignIn";
+import signUp from "../components/account/SignUp";
+import OtpVerification from "../components/account/OtpVerification";
 
 const Stack = createStackNavigator();
 
