@@ -16,7 +16,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.qulbe.dealerapp"
+      "bundleIdentifier": "com.qulbe.dealerapp",
     },
     "android": {
       "adaptiveIcon": {

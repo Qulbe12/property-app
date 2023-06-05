@@ -1,6 +1,7 @@
 import {extendTheme} from 'native-base';
 import {DefaultTheme} from "@react-navigation/native";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {  StorageManager, ColorMode } from 'native-base';
 export const navTheme = {
     ...DefaultTheme,
     colors: {
@@ -17,16 +18,16 @@ export const nbtheme = extendTheme({
             deg: 239.28,
         },
         primary: {
-            50: "#f0fdf4",
-            100: "#dcfce7",
-            200: "#bbf7d0",
-            300: "#86efac",
-            400: "#4ade80",
-            500: "#22c55e",
-            600: "#16a34a",
-            700: "#15803d",
-            800: "#166534",
-            900: "#14532d",
+            50: "#fff4e6",
+            100: "#ffe8cc",
+            200: "#ffc9c9",
+            300: "#ffc078",
+            400: "#ffa94d",
+            500: "#ff922b",
+            600: "#fd7e14",
+            700: "#f76707",
+            800: "#e8590c",
+            900: "#d9480f",
         },
     },
     config: {
@@ -39,7 +40,7 @@ export const nbtheme = extendTheme({
             },
             defaultProps: {
                 size: "md",
-                variant: "filled",
+                variant:"outline"
             },
         },
         Text: {
@@ -49,3 +50,21 @@ export const nbtheme = extendTheme({
         },
     },
 });
+//
+// export const colorModeManager: StorageManager = {
+//     get: async () => {
+//         try {
+//             let val = await AsyncStorage.getItem('@color-mode');
+//             return val === 'dark' ? 'dark' : 'light';
+//         } catch (e) {
+//             return 'light';
+//         }
+//     },
+//     set: async (value: ColorMode) => {
+//         try {
+//             await AsyncStorage.setItem('@color-mode', value as never);
+//         } catch (e) {
+//             console.log(e);
+//         }
+//     },
+// };

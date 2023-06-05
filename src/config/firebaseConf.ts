@@ -8,7 +8,7 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-export const firebaseConfig = {
+ const firebaseConfig = {
     apiKey: "AIzaSyCufLORhpywMa_e-ovo2Yn0tnPxgZaHniY",
 
     authDomain: "dealer-app-43028.firebaseapp.com",
@@ -25,7 +25,7 @@ export const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 const analytics = isSupported().then(yes => yes ? getAnalytics(app) : null);

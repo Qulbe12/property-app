@@ -1,111 +1,80 @@
-import React, {useRef, useState} from 'react';import {
-    Text,
-    View,
-    TextInput,
-    Button,
-    StyleSheet,
-    TouchableOpacity,
-    Platform,
-} from 'react-native';
-import {app, auth} from "../../config/firebaseConf";
-import { FirebaseRecaptchaVerifierModal, FirebaseRecaptchaBanner } from 'expo-firebase-recaptcha';
-import {  PhoneAuthProvider, signInWithCredential } from 'firebase/auth';
-
-
-
-
-const TestComponent = () => {
-    const recaptchaVerifier = useRef(null);
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [verificationId, setVerificationId] = useState("");
-    const [verificationCode, setVerificationCode] = useState("");
-
-    const firebaseConfig = app ? app.options : undefined;
-    const [message, showMessage] = useState({text:"", color:""});
-    const attemptInvisibleVerification = false;
-
-    return (
-        <View style={{ padding: 20, marginTop: 50 }}>
-            <FirebaseRecaptchaVerifierModal
-                ref={recaptchaVerifier}
-                firebaseConfig={firebaseConfig}
-                // attemptInvisibleVerification
-            />
-            <Text style={{ marginTop: 20 }}>Enter phone number</Text>
-            <TextInput
-                style={{ marginVertical: 10, fontSize: 17 }}
-                placeholder="+1 999 999 9999"
-                autoFocus
-                keyboardType="phone-pad"
-                textContentType="telephoneNumber"
-                onChangeText={setPhoneNumber}
-            />
-            <Button
-                title="Send Verification Code"
-                disabled={!phoneNumber}
-                onPress={async () => {
-                    // The FirebaseRecaptchaVerifierModal ref implements the
-                    // FirebaseAuthApplicationVerifier interface and can be
-                    // passed directly to `verifyPhoneNumber`.
-                    try {
-                        const phoneProvider = new PhoneAuthProvider(auth);
-                        const verificationId = await phoneProvider.verifyPhoneNumber(
-                            phoneNumber,
-                            recaptchaVerifier.current
-                        );
-                        setVerificationId(verificationId);
-                        showMessage({
-                            text: 'Verification code has been sent to your phone.',
-                            color: ""
-                        });
-                    } catch (err:any
-                        ) {
-                        showMessage({ text: `Error: ${err.message}`, color: 'red' });
-                    }
-                }}
-            />
-            <Text style={{ marginTop: 20 }}>Enter Verification code</Text>
-            <TextInput
-                style={{ marginVertical: 10, fontSize: 17 }}
-                editable={!!verificationId}
-                placeholder="123456"
-                onChangeText={setVerificationCode}
-            />
-            <Button
-                title="Confirm Verification Code"
-                disabled={!verificationId}
-                onPress={async () => {
-                    try {
-                        const credential = PhoneAuthProvider.credential(verificationId, verificationCode);
-                        await signInWithCredential(auth, credential);
-                        showMessage({ text: 'Phone authentication successful 👍', color: "" });
-                    } catch (err:any) {
-                        showMessage({ text: `Error: ${err.message}`, color: 'red' });
-                    }
-                }}
-            />
-            {message ? (
-                <TouchableOpacity
-                    style={[
-                        StyleSheet.absoluteFill,
-                        // { backgroundColor: 0xffffffee, justifyContent: 'center' },
-                    ]}
-                    onPress={() => showMessage({text: "" , color: ""})}>
-                    <Text
-                        style={{
-                            color: message.color || 'blue',
-                            fontSize: 17,
-                            textAlign: 'center',
-                            margin: 20,
-                        }}>
-                        {message.text}
-                    </Text>
-                </TouchableOpacity>
-            ) : undefined}
-            {attemptInvisibleVerification && <FirebaseRecaptchaBanner />}
-        </View>
-    );
-
-};
-
-export default TestComponent;
+// import {Box, Button, Center, FormControl, Input, VStack} from 'native-base';
+// import React, {useRef, useState} from 'react';
+// import {auth} from "../../config/firebaseConf";
+// import {FirebaseRecaptchaVerifierModal} from "expo-firebase-recaptcha";
+// import {PhoneAuthProvider, signInWithCredential} from 'firebase/auth';
+// import useAuth from "../../hooks/useAuth";
+// import {useNavigation} from "@react-navigation/native";
+//
+// const TestComponent = () => {
+//     const navigation = useNavigation()
+//     const {firebaseConfig} = useAuth()
+//     const [form, setForm] = useState({
+//         phone: "",
+//         password: ""
+//     })
+//     const recaptchaVerifier = useRef(null)
+//
+//     const [verificationId, setVerificationId] = useState("");
+//     const [verificationCode, setVerificationCode] = useState("");
+//     const onVerification = async () => {
+//         try {
+//             const phoneProvider = new PhoneAuthProvider(auth);
+//             const verificationId = await phoneProvider.verifyPhoneNumber(
+//                 form.phone,
+//                 recaptchaVerifier.current
+//             );
+//             console.log(verificationId)
+//             setVerificationId(verificationId);
+//             alert(
+//                 'Verification code has been sent to your phone.',
+//             );
+//         } catch (err: any) {
+//             console.log(err)
+//             alert(`Error: ${err.message}`);
+//         }
+//     }
+//
+//     const confirmOTP = async () => {
+//         try {
+//             const credential = PhoneAuthProvider.credential(verificationId, verificationCode);
+//             const res = await signInWithCredential(auth, credential);
+//             console.log(res.user)
+//             alert({text: 'Phone authentication successful 👍'});
+//         } catch (err: any) {
+//             alert({text: `Error: ${err.message}`, color: 'red'});
+//         }
+//     }
+//
+//     return (
+//         <Center flex={1} w="100%">
+//             <Box safeArea p="2" py="8" w="90%" maxW="290">
+//                 <FirebaseRecaptchaVerifierModal
+//                     ref={recaptchaVerifier}
+//                     firebaseConfig={firebaseConfig}
+//                     attemptInvisibleVerification
+//                 />
+//                 <VStack>
+//                     <FormControl>
+//                         <FormControl.Label>Phone number</FormControl.Label>
+//                         <Input keyboardType="numbers-and-punctuation" onChangeText={(v) => {
+//                             setForm({...form, phone: v})
+//                         }}/>
+//                         {/*<FormControl.ErrorMessage>{errors.phone}</FormControl.ErrorMessage>*/}
+//                     </FormControl>
+//                     <Button onPress={onVerification}>send verification code</Button>
+//
+//                     <FormControl>
+//                         <FormControl.Label>Password</FormControl.Label>
+//                         <Input keyboardType="visible-password" onChangeText={setVerificationCode}/>
+//                         {/*<FormControl.ErrorMessage>{errors.phone}</FormControl.ErrorMessage>*/}
+//                     </FormControl>
+//                     <Button onPress={confirmOTP}>click here to sign up</Button>
+//                     <Button onPress={() => navigation.navigate("SignIn" as never)}>click here to sign in</Button>
+//                 </VStack>
+//             </Box>
+//         </Center>
+//     );
+// };
+//
+// export default TestComponent;

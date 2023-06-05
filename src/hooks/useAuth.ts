@@ -1,10 +1,12 @@
 import {useEffect, useState} from "react";
-import { onAuthStateChanged, User} from "@firebase/auth"
-import {auth} from "../config/firebaseConf";
+import { onAuthStateChanged, User } from "@firebase/auth"
+import app, {auth} from "../config/firebaseConf";
+import firebase from "firebase/compat";
 
 const useAuth = () => {
-    const [user, setUser] = useState<User>()
 
+    const [user, setUser] = useState<User>()
+    const firebaseConfig = app ? app.options : undefined;
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -17,7 +19,7 @@ const useAuth = () => {
     }, [])
 
     return {
-        user
+        user , firebaseConfig
     }
 }
 

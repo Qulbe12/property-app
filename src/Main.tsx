@@ -1,20 +1,21 @@
 import React from 'react';
 import AuthStack from "./stacks/Authstack";
 import useAuth from "./hooks/useAuth"
-import {Button, Center} from "native-base";
-import {signOut} from "firebase/auth"
-import {auth} from "./config/firebaseConf";
+import Home from "./components/dashboard/Home";
+import firebase from "firebase/compat";
+import {Button} from "native-base";
+import HomePage from "./components/dashboard/Home";
 
 const Main = () => {
-    const {user} = useAuth()
+    const {user, firebaseConfig} = useAuth()
+
+    if (firebaseConfig){
+        firebase.initializeApp(firebaseConfig)
+        console.log("firebase config done")
+        console.log("main app",user)
+    }
     return (
-      user ? <Center safeArea={true}>
-          <Button onPress={async ()=>{
-          const res = await signOut(auth)
-          console.log(
-              res
-          )
-      }}>sign out</Button></Center> : <AuthStack/>
+      user ? <HomePage/>  : <AuthStack/>
     );
 };
 

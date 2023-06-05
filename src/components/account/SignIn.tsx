@@ -2,14 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {Box, Button, Center, FormControl, Heading, HStack, Input, Link, Text, VStack} from "native-base";
 import {useNavigation} from "@react-navigation/native";
 import {signInWithEmailAndPassword} from "firebase/auth"
-import * as yup from "yup"
 import {auth} from "../../config/firebaseConf";
+import * as yup from "yup";
+
 
 const schema = yup.object().shape({
     phone: yup.string().required("phone is required"),
     password: yup.string().required("password is required")
 })
-
 const SignIn = () => {
     const navigation = useNavigation()
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -18,29 +18,32 @@ const SignIn = () => {
         password: ""
     })
 
-    const signInFunc = async ()=>{
-try {
-    const res = await signInWithEmailAndPassword(auth , form.phone , form.password )
-    console.log(res.user)
-}catch (e) {
-    console.log(e)
-}
+    const signInFunc = async () => {
+        try {
+            const res = await signInWithEmailAndPassword(auth, `${form.phone}@firebase.com`, form.password)
+            console.log(res.user)
+        } catch (e: any) {
+            console.log(e.message)
+        }
     }
 
     const onSubmit = () => {
         schema
             .validate(form)
             .then(async () => {
-              await  signInFunc()
+                // navigation.navigate("OtpVerification" as never);
+                console.log(form)
             })
             .catch((err: yup.ValidationError) => {
                 if (!err.path) return;
                 setErrors({[err.path]: err.message});
             });
     };
+
     useEffect(() => {
         setErrors({});
     }, [form]);
+
 
     return (
         <Center flex={1} w="100%">
@@ -56,14 +59,15 @@ try {
                     Sign in to continue!
                 </Heading>
                 <VStack space={3} mt="5">
-                    <FormControl>
+                    <FormControl isInvalid>
                         <FormControl.Label>Phone number</FormControl.Label>
-                        <Input keyboardType="number-pad" onChangeText={(v) => {
-                            setForm({...form, phone: v})
-                        }}/>
+                        <Input placeholder="+92**********" keyboardType="phone-pad" maxLength={13}
+                               onChangeText={(v) => {
+                                   setForm({...form, phone: v})
+                               }}/>
                         <FormControl.ErrorMessage>{errors.phone}</FormControl.ErrorMessage>
                     </FormControl>
-                    <FormControl>
+                    <FormControl isInvalid>
                         <FormControl.Label>Password</FormControl.Label>
                         <Input type="password" onChangeText={(v) => {
                             setForm({...form, password: v})
