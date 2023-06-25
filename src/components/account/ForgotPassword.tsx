@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
+import * as yup from "yup";
 import {
     Box,
     Button,
@@ -14,25 +15,19 @@ import {
     VStack
 } from "native-base";
 import {useNavigation} from "@react-navigation/native";
-import {fetchSignInMethodsForEmail, PhoneAuthProvider} from "firebase/auth"
-import {auth} from "../../config/firebaseConf";
-import * as yup from "yup";
 import {FirebaseRecaptchaVerifierModal} from "expo-firebase-recaptcha";
 import useAuth from "../../hooks/useAuth";
+import {fetchSignInMethodsForEmail, PhoneAuthProvider} from "firebase/auth";
+import {auth} from "../../config/firebaseConf";
 
-
-// const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-2490535597271516~5927830202';
 
 const schema = yup.object().shape({
     phone: yup.string().required("phone is required"),
     password: yup.string().required("password is required")
 })
-
-const SignUp = () => {
-    const navigation = useNavigation()
+const ForgotPassword = () => {
     const toast = useToast()
     const [show, setShow] = useState(false);
-
     const handleClick = () => setShow(!show)
     const recaptchaVerifier = useRef(null)
     const {firebaseConfig} = useAuth()
@@ -42,6 +37,7 @@ const SignUp = () => {
         phone: "",
         password: ""
     })
+    const navigation = useNavigation()
     const [loading, setLoading] = useState(false)
 
     const checkPhoneNumberExists = async () => {
@@ -54,9 +50,10 @@ const SignUp = () => {
         }
     };
 
-    const signup = async () => {
+    const forgotPassword = async () => {
         try {
             setLoading(true)
+            console.log("hitting")
             const phoneProvider = new PhoneAuthProvider(auth);
             const verificationId = await phoneProvider.verifyPhoneNumber(
                 form.phone,
@@ -86,22 +83,22 @@ const SignUp = () => {
             setLoading(false)
         }
     }
-
     const onSubmit = () => {
         schema
             .validate(form)
             .then(async () => {
                 const phoneNumberExists = await checkPhoneNumberExists();
-                if (phoneNumberExists) {
+                if (!phoneNumberExists) {
                     toast.show({
                         title: "Error",
-                        description: "Phone number already exists"
+                        description: "Phone number does not exists"
                     })
                     setForm({phone: "", password: ""})
                     return
                 } else {
-                    signup()
+                    forgotPassword()
                 }
+
             })
             .catch((err: yup.ValidationError) => {
                 if (!err.path) return;
@@ -112,7 +109,6 @@ const SignUp = () => {
     useEffect(() => {
         setErrors({});
     }, [form]);
-
 
     return (
         <Center flex={1} w="100%">
@@ -125,12 +121,12 @@ const SignUp = () => {
                 <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{
                     color: "warmGray.50"
                 }}>
-                    Sign up here
+                    Forgot password?
                 </Heading>
                 <Heading mt="1" _dark={{
                     color: "warmGray.200"
                 }} color="coolGray.600" fontWeight="medium" size="xs">
-                    Sign up to continue!
+                    Please enter your phone number to reset your password
                 </Heading>
                 <VStack space={3} mt="5">
                     <FormControl isInvalid>
@@ -142,7 +138,7 @@ const SignUp = () => {
                         <FormControl.ErrorMessage>{errors.phone}</FormControl.ErrorMessage>
                     </FormControl>
                     <FormControl isInvalid>
-                        <FormControl.Label>Password</FormControl.Label>
+                        <FormControl.Label>New password</FormControl.Label>
                         <Input type={show ? "text" : "password"} InputRightElement={
                             <Button ml={1} roundedLeft={0} roundedRight="md" onPress={handleClick}>
                                 {show ? "Hide" : "Show"}
@@ -153,13 +149,13 @@ const SignUp = () => {
                         <FormControl.ErrorMessage>{errors.password}</FormControl.ErrorMessage>
                     </FormControl>
                     <Button isLoading={loading} onPress={onSubmit} rounded="md" mt="2" color="primary.50">
-                        Sign up
+                        Send OTP
                     </Button>
                     <HStack mt="6" justifyContent="center">
                         <Text fontSize="sm" color="coolGray.600" _dark={{
                             color: "warmGray.200"
                         }}>
-                            already have an account?.{" "}
+                            Remember tour password.{" "}
                         </Text>
                         <Link onPress={() => {
                             navigation.navigate("SignIn" as never)
@@ -193,4 +189,4 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+export default ForgotPassword;

@@ -1,21 +1,24 @@
 import React from 'react';
-import AuthStack from "./stacks/Authstack";
 import useAuth from "./hooks/useAuth"
-import Home from "./components/dashboard/Home";
-import firebase from "firebase/compat";
-import {Button} from "native-base";
-import HomePage from "./components/dashboard/Home";
+import ProfileSetup from "./components/account/ProfileSetup";
+import MainStack from "./stacks/MainStack";
+import AuthStack from "./stacks/Authstack";
 
 const Main = () => {
     const {user, firebaseConfig} = useAuth()
-
-    if (firebaseConfig){
-        firebase.initializeApp(firebaseConfig)
-        console.log("firebase config done")
-        console.log("main app",user)
+    if (user) {
+        if (user?.displayName === null) {
+            return (
+                <ProfileSetup/>
+            )
+        } else {
+            return (
+                <MainStack/>
+            )
+        }
     }
     return (
-      user ? <HomePage/>  : <AuthStack/>
+        <AuthStack/>
     );
 };
 

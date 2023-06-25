@@ -1,17 +1,24 @@
 import Main from "./src/Main";
 import {NavigationContainer} from "@react-navigation/native";
 import {NativeBaseProvider} from "native-base";
-import {nbtheme} from "./src/config/theme";
+import {colorModeManager, navTheme, nbtheme} from "./src/config/theme";
 import {Provider} from "react-redux";
 import store from "./src/redux/Store";
+import {useKeepAwake} from 'expo-keep-awake';
+import {SafeAreaView} from "react-native-safe-area-context";
+
 
 export default function App() {
+    useKeepAwake()
     return (
-        <NavigationContainer>
-            <NativeBaseProvider theme={nbtheme}>
-                <Provider store={store}>
-                    <Main/>
-                </Provider>
+
+        <NavigationContainer theme={navTheme}>
+            <NativeBaseProvider theme={nbtheme} colorModeManager={colorModeManager}>
+                <SafeAreaView style={{flex: 1}}>
+                    <Provider store={store}>
+                        <Main/>
+                    </Provider>
+                </SafeAreaView>
             </NativeBaseProvider>
         </NavigationContainer>
     );

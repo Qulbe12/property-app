@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Button, Center, FormControl, Heading, HStack, Input, Link, Text, VStack} from "native-base";
+import {Box, Button, Center, FormControl, Heading, HStack, Input, Link, Text, useToast, VStack} from "native-base";
 import {useNavigation} from "@react-navigation/native";
 import {signInWithEmailAndPassword} from "firebase/auth"
 import {auth} from "../../config/firebaseConf";
 import * as yup from "yup";
+import {useAppDispatch} from '../../redux/Store';
 
 
 const schema = yup.object().shape({
@@ -12,18 +13,28 @@ const schema = yup.object().shape({
 })
 const SignIn = () => {
     const navigation = useNavigation()
+    const toast = useToast()
+    const dispatch = useAppDispatch()
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
     const [form, setForm] = useState({
         phone: "",
         password: ""
     })
+    const [loading, setLoading] = useState(false)
+    const [show, setShow] = useState(false);
 
+    const handleClick = () => setShow(!show)
     const signInFunc = async () => {
         try {
-            const res = await signInWithEmailAndPassword(auth, `${form.phone}@firebase.com`, form.password)
-            console.log(res.user)
+            setLoading(true)
+            const res = await signInWithEmailAndPassword(auth, `${form.phone}@mail.com`, form.password)
+            setLoading(false)
         } catch (e: any) {
-            console.log(e.message)
+            toast.show({
+                title: "Error",
+                description: "Something went wrong please try again"
+            })
+            setLoading(false)
         }
     }
 
@@ -31,8 +42,7 @@ const SignIn = () => {
         schema
             .validate(form)
             .then(async () => {
-                // navigation.navigate("OtpVerification" as never);
-                console.log(form)
+                await signInFunc()
             })
             .catch((err: yup.ValidationError) => {
                 if (!err.path) return;
@@ -69,12 +79,27 @@ const SignIn = () => {
                     </FormControl>
                     <FormControl isInvalid>
                         <FormControl.Label>Password</FormControl.Label>
-                        <Input type="password" onChangeText={(v) => {
+                        <Input type={show ? "text" : "password"} InputRightElement={
+                            <Button ml={1} roundedLeft={0} roundedRight="md" onPress={handleClick}>
+                                {show ? "Hide" : "Show"}
+                            </Button>
+                        } onChangeText={(v) => {
                             setForm({...form, password: v})
                         }}/>
                         <FormControl.ErrorMessage>{errors.password}</FormControl.ErrorMessage>
                     </FormControl>
-                    <Button onPress={onSubmit} rounded="md" mt="2" color="primary.50">
+                    <HStack justifyContent="flex-end">
+                        <Link onPress={() => {
+                            navigation.navigate("ForgotPassword" as never)
+                        }} _text={{
+                            color: "primary.600",
+                            fontWeight: "medium",
+                            fontSize: "sm"
+                        }}>
+                            Forgot password?
+                        </Link>
+                    </HStack>
+                    <Button isLoading={loading} onPress={onSubmit} rounded="md" mt="2" color="primary.50">
                         Sign in
                     </Button>
                     <HStack mt="6" justifyContent="center">

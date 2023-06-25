@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Box, Button, Center, FormControl, HStack, Image, Input, Link, VStack} from "native-base";
 import * as yup from "yup";
 import {useNavigation, useRoute} from "@react-navigation/native";
-import {PhoneAuthProvider, signInWithCredential, updateEmail, updatePassword} from 'firebase/auth';
+import {PhoneAuthProvider, signInWithCredential, updatePassword} from 'firebase/auth';
 import {auth} from '../../config/firebaseConf';
 
 const schema = yup.object().shape({
@@ -23,27 +23,15 @@ const OtpVerification = () => {
         if (creds) {
             const credential = PhoneAuthProvider.credential(creds.id, form.otp)
             signInWithCredential(auth, credential)
-                .then(async (result) => {
-                    console.log("after otp", result.user)
-                    await updateEmail(result.user, `${creds.phone}@mail.com`)
+                .then((result) => {
+                    updatePassword(result.user, creds.password)
                         .then(() => {
-                            console.log("email updated")
+                            console.log("password updated")
                         })
                         .catch((reason) => {
-                            console.log("error on updating email", reason)
-                        })
-                    await updatePassword(result.user, creds.password)
-                        .then(() => {
-                            console.log("password setup")
-                        })
-                        .catch((reason) => {
-                            console.log("password setup error", reason)
+                            console.log("error on password change", reason)
                         })
                 })
-                .catch((reason) => {
-                    console.log("error", reason)
-                })
-
         }
     }
 
