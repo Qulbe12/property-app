@@ -17,8 +17,10 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.qulbe.dealerapp",
+      "GoogleService-Info.plist": "ios.googleServicesFile"
     },
     "android": {
+      "google-services.json": "android.googleServicesFile",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -29,6 +31,12 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ],
       [
         "expo-build-properties",
         {
