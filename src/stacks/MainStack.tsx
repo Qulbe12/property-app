@@ -7,6 +7,7 @@ import Home from "../components/dashboard/Home";
 import WelcomeScreen from "../components/screens/WelcomeScreen";
 import {Divider, Pressable, VStack} from "native-base";
 import AddProperty from "../components/screens/AddProperty";
+import PropertyFloorPlan from "../components/screens/PropertyFloorPlan";
 import PropertyFeatures from "../components/screens/PropertyFeatures";
 
 const Drawer = createDrawerNavigator();
@@ -62,13 +63,18 @@ const MainStack = () => {
                 component={DrawerNavigation}
             />
             <Stack.Screen
-                options={{headerShown: false, title: "Profile"}}
+                options={{title: "Profile"}}
                 name="Profile"
                 component={Home}
             />
             <Stack.Screen
                 options={{headerShown: false, title: "Profile"}}
                 name="floorPlan"
+                component={PropertyFloorPlan}
+            />
+            <Stack.Screen
+                options={{headerShown: false, title: "Profile"}}
+                name="propertyFeatures"
                 component={PropertyFeatures}
             />
             {/*<Stack.Screen*/}

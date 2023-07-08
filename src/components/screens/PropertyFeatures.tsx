@@ -1,108 +1,69 @@
 import React, {useState} from 'react';
-import {
-    Box,
-    Button,
-    Center,
-    CheckIcon,
-    Divider,
-    FormControl,
-    Heading,
-    HStack,
-    Icon,
-    Input,
-    ScrollView,
-    Select,
-    Text,
-    VStack,
-    WarningOutlineIcon
-} from "native-base";
-
-interface floorsItems {
-
-}
+import {Box, Button, Center, FormControl, Heading, HStack, Input, Switch, Text, VStack} from "native-base";
 
 const PropertyFeatures = () => {
-
-    const [floors, setFloors] = useState("")
-    const [selectedFloors, setSelectedFloors] = useState<number[]>([])
-
-    const setArr = (value: number) => {
-        if (selectedFloors.length < value) {
-            setSelectedFloors([...selectedFloors, value])
-        } else {
-            return
-        }
-        setArr(value)
-    }
-
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     return (
         <Center flex={1} w="100%">
             <Box safeArea py="8" w="100%" maxW="290">
-                <Heading>Floor plan</Heading>
-                <FormControl w="100%" maxW="300" isRequired isInvalid>
-                    <FormControl.Label>Slect floors</FormControl.Label>
-                    <Select minWidth="200" accessibilityLabel="floors" placeholder="Floors"
-                            onValueChange={(itemValue) => {
-                                setFloors(itemValue)
-                                setArr(Number(itemValue))
-                                console.log(selectedFloors)
-                            }}
-                            selectedValue={floors}
-                            _selectedItem={{
-                                bg: "teal.600",
-                                endIcon: <CheckIcon size={5}/>
-                            }} mt="1">
-                        <Select.Item label="1" value="1"/>
-                        <Select.Item label="2" value="2"/>
-                        <Select.Item label="3" value="3"/>
-
-                    </Select>
-                    {floors === "" && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs"/>}>
-                        Please make a selection!
-                    </FormControl.ErrorMessage>}
+                <Heading>Features</Heading>
+                <FormControl>
+                    <FormControl.Label>Road size</FormControl.Label>
+                    <Input keyboardType="number-pad"/>
                 </FormControl>
-                <ScrollView my={9} horizontal={true} w="100%" borderRadius="lg" borderWidth="1">
-                    {selectedFloors?.map((x) => {
-                        console.log(x)
-                        return (
-                            <Box p="5">
-                                <HStack space={3} divider={<Divider/>}>
-                                    <VStack justifyContent="space-between" w="34%">
-                                        <Text bold>Floor</Text>
-                                        <Icon name="arrow-forward"/>
-                                        <VStack space={9}>
-                                            <Text>Bedrooms</Text>
-                                            <Text>Washrooms</Text>
-                                            <Text>Kitchen</Text>
-                                            <Text>Terrace</Text>
-                                        </VStack>
-                                    </VStack>
-                                    <VStack justifyContent="space-between" w="25%">
-                                        <Text bold>Number</Text>
-                                        <Icon name="arrow-forward"/>
-                                        <VStack space={2}>
-                                            <Input maxLength={2} keyboardType="number-pad" w="80%"/>
-                                            <Input maxLength={2} keyboardType="number-pad" w="80%"/>
-                                            <Input maxLength={2} keyboardType="number-pad" w="80%"/>
-                                            <Input maxLength={2} keyboardType="number-pad" w="80%"/>
-                                        </VStack>
-                                    </VStack>
-                                    <VStack justifyContent="space-between" w="25%">
-                                        <Text bold>Area</Text>
-                                        <Icon name="arrow-forward"/>
-                                        <VStack space={2}>
-                                            <Input maxLength={3} keyboardType="number-pad" w="80%"/>
-                                            <Input maxLength={3} keyboardType="number-pad" w="80%"/>
-                                            <Input maxLength={3} keyboardType="number-pad" w="80%"/>
-                                            <Input maxLength={3} keyboardType="number-pad" w="80%"/>
-                                        </VStack>
-                                    </VStack>
-                                </HStack>
-                            </Box>
-                        )
-                    })}
-
-                </ScrollView>
+                <VStack my={4}>
+                    <HStack justifyContent="space-between">
+                        <Text my={2}>Electricity</Text>
+                        <Switch offThumbColor="black"/>
+                    </HStack>
+                    <HStack justifyContent="space-between">
+                        <Text my={2}>Cable Tv</Text>
+                        <Switch offThumbColor="black"/>
+                    </HStack>
+                    <HStack justifyContent="space-between">
+                        <Text my={2}>Carpet Road</Text>
+                        <Switch offThumbColor="black"/>
+                    </HStack>
+                    <HStack justifyContent="space-between">
+                        <Text my={2}>Cleanliness</Text>
+                        <Switch offThumbColor="black"/>
+                    </HStack>
+                    <HStack justifyContent="space-between">
+                        <Text my={2}>Internet</Text>
+                        <Switch offThumbColor="black"/>
+                    </HStack>
+                    <HStack justifyContent="space-between">
+                        <Text my={2}>Security</Text>
+                        <Switch offThumbColor="black"/>
+                    </HStack>
+                    <HStack justifyContent="space-between">
+                        <Text my={2}>Furnished</Text>
+                        <Switch offThumbColor="black"/>
+                    </HStack>
+                    <HStack justifyContent="space-between">
+                        <Text my={2}>Gas</Text>
+                        <Switch offThumbColor="black"/>
+                    </HStack>
+                    <HStack justifyContent="space-between">
+                        <Text my={2}>Security Changes</Text>
+                        <Switch offThumbColor="black"/>
+                    </HStack>
+                    <HStack justifyContent="space-between">
+                        <Text my={2}>Sewerage</Text>
+                        <Switch offThumbColor="black"/>
+                    </HStack>
+                    <HStack justifyContent="space-between">
+                        <FormControl w="46%">
+                            <FormControl.Label>Garage Size</FormControl.Label>
+                            <Input keyboardType="number-pad"/>
+                        </FormControl>
+                        <FormControl w="46%">
+                            <FormControl.Label>Garage Capacity</FormControl.Label>
+                            <Input keyboardType="number-pad"/>
+                        </FormControl>
+                    </HStack>
+                </VStack>
                 <Button alignSelf="center" w="50%">Next</Button>
             </Box>
         </Center>
