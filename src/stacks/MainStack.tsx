@@ -9,6 +9,7 @@ import {Divider, Pressable, VStack} from "native-base";
 import AddProperty from "../components/screens/AddProperty";
 import PropertyFloorPlan from "../components/screens/PropertyFloorPlan";
 import PropertyFeatures from "../components/screens/PropertyFeatures";
+import Finalize from "../components/screens/Finalize";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -48,6 +49,14 @@ const DrawerNavigation = () => {
                     headerShown: false,
                 }}
                 component={AddProperty}
+            />
+            <Drawer.Screen
+                name="Finalize"
+                options={{
+                    title: "Finalize",
+                    headerShown: false,
+                }}
+                component={Finalize}
             />
 
         </Drawer.Navigator>
