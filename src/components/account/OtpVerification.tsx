@@ -71,7 +71,7 @@ const OtpVerification = () => {
                 <VStack space={3} mt="5">
                     <FormControl>
                         <FormControl.Label>OTP</FormControl.Label>
-                        <Input maxLength={6} keyboardType="phone-pad" placeholder="123456" onChangeText={(v) => {
+                        <Input maxLength={6} keyboardType="name-phone-pad" placeholder="123456" onChangeText={(v) => {
                             setForm({...form, otp: v})
                         }}/>
                         <FormControl.ErrorMessage>{errors.password}</FormControl.ErrorMessage>
