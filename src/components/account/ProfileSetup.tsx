@@ -6,6 +6,8 @@ import * as ImagePicker from 'expo-image-picker';
 import {signOut, updateProfile} from "firebase/auth";
 import useAuth from "../../hooks/useAuth";
 import {auth} from "../../config/firebaseConf";
+import {useAppDispatch} from "../../redux/Store";
+import {addUser} from "../../redux/account/actions/userActions";
 
 
 const schema = yup.object().shape({
@@ -20,6 +22,7 @@ const ProfileSetup = () => {
         image: ""
     })
     const {user} = useAuth()
+    const dispatch = useAppDispatch()
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -38,6 +41,7 @@ const ProfileSetup = () => {
             try {
                 const res = updateProfile(user, {displayName: form.name, photoURL: form.image})
                 console.log("success", res)
+                dispatch(addUser({name: user.displayName , phone: user.phoneNumber}))
                 await signOut(auth)
             } catch (e) {
                 console.log("error", e)
