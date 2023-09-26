@@ -12,6 +12,7 @@ import PropertyFeatures from "../components/screens/PropertyFeatures";
 import PropertyForRent from "../components/screens/PropertyForRent";
 import Results from "../components/screens/Results";
 import Contact from "../components/screens/Contact";
+import HomeInfo from "../components/screens/HomeInfo";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -75,6 +76,14 @@ const DrawerNavigation = () => {
                     headerShown: false,
                 }}
                 component={Contact}
+            />
+            <Drawer.Screen
+                name="HomeInfo"
+                options={{
+                    title: "HomeInfo",
+                    headerShown: false,
+                }}
+                component={HomeInfo}
             />
 
         </Drawer.Navigator>
