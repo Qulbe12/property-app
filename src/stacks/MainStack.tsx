@@ -9,7 +9,9 @@ import {Divider, Pressable, VStack} from "native-base";
 import AddProperty from "../components/screens/AddProperty";
 import PropertyFloorPlan from "../components/screens/PropertyFloorPlan";
 import PropertyFeatures from "../components/screens/PropertyFeatures";
+import ContactList from "../components/screens/ContactList";
 import Finalize from "../components/screens/Finalize";
+
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -50,6 +52,16 @@ const DrawerNavigation = () => {
                 }}
                 component={AddProperty}
             />
+
+             <Drawer.Screen
+                name="ContactList"
+                options={{
+                    title: "ContactList",
+                    headerShown: false,
+                }}
+                component={ContactList}
+                />
+
             <Drawer.Screen
                 name="Finalize"
                 options={{
@@ -57,6 +69,7 @@ const DrawerNavigation = () => {
                     headerShown: false,
                 }}
                 component={Finalize}
+
             />
 
         </Drawer.Navigator>
