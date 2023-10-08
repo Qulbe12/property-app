@@ -131,7 +131,7 @@ const ForgotPassword = () => {
                 <VStack space={3} mt="5">
                     <FormControl isInvalid>
                         <FormControl.Label>Phone number</FormControl.Label>
-                        <Input placeholder="+92**********" keyboardType="phone-pad" maxLength={13}
+                        <Input placeholder="+92**********" keyboardType="name-phone-pad" maxLength={13}
                                onChangeText={(v) => {
                                    setForm({...form, phone: v})
                                }}/>
