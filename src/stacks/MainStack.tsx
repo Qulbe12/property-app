@@ -10,6 +10,8 @@ import AddProperty from "../components/screens/AddProperty";
 import PropertyFloorPlan from "../components/screens/PropertyFloorPlan";
 import PropertyFeatures from "../components/screens/PropertyFeatures";
 import ContactList from "../components/screens/ContactList";
+import Finalize from "../components/screens/Finalize";
+
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -50,6 +52,7 @@ const DrawerNavigation = () => {
                 }}
                 component={AddProperty}
             />
+
              <Drawer.Screen
                 name="ContactList"
                 options={{
@@ -57,6 +60,16 @@ const DrawerNavigation = () => {
                     headerShown: false,
                 }}
                 component={ContactList}
+                />
+
+            <Drawer.Screen
+                name="Finalize"
+                options={{
+                    title: "Finalize",
+                    headerShown: false,
+                }}
+                component={Finalize}
+
             />
 
         </Drawer.Navigator>

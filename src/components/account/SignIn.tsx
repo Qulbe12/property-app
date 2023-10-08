@@ -5,6 +5,8 @@ import {signInWithEmailAndPassword} from "firebase/auth"
 import {auth} from "../../config/firebaseConf";
 import * as yup from "yup";
 import {useAppDispatch} from '../../redux/Store';
+import {setUser} from "../../redux/account/AuthSlice";
+import {setToken} from "../../storage/asyncStore";
 
 
 const schema = yup.object().shape({
@@ -28,6 +30,11 @@ const SignIn = () => {
         try {
             setLoading(true)
             const res = await signInWithEmailAndPassword(auth, `${form.phone}@mail.com`, form.password)
+            res.user.getIdToken().then((t)=>{
+                setToken(t)
+            }).catch((reason)=>{
+                console.log(reason)
+            })
             setLoading(false)
         } catch (e: any) {
             toast.show({
