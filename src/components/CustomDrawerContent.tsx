@@ -29,6 +29,7 @@ const CustomDrawerContent = () => {
                 <VStack space={4}>
                     {/*<Image mt="16" ml="4" source={Image1} alt="image" />*/}
                     <VStack mt={2} mx={3}>
+
                         <Pressable onPress={(): void => navigation.navigate("PropertyForRent" as never)}>
                             <HStack top={1} p="3" space={3} alignItems="center">
                                 <MaterialIcons name="house" size={24} color={nbtheme.colors.primary["600"]} />
@@ -73,12 +74,32 @@ const CustomDrawerContent = () => {
                                 <MaterialIcons name="house" size={24} color={nbtheme.colors.primary["600"]} />
                                 <Text color={nbtheme.colors.primary["600"]} fontSize={18}>
                                     House Information
+                                    </Text>
+                            </HStack>
+                        </Pressable>
+                    </VStack>
+
+
+                        <Pressable onPress={(): void => navigation.navigate("ContactList" as never)}>
+                            <HStack top={1} p="3" space={3} alignItems="center">
+                                <Ionicons name="compass-outline" size={24} color={nbtheme.colors.primary["600"]}/>
+                                <Text color={nbtheme.colors.primary["600"]} fontSize={18}>
+                                    Contact List
+                                  </Text>
+                            </HStack>
+                        </Pressable>
+                        <Pressable onPress={(): void => navigation.navigate("Finalize" as never)}>
+                            <HStack top={1} p="3" space={3} alignItems="center">
+                                <Ionicons name="compass-outline" size={24} color={nbtheme.colors.primary["600"]}/>
+                                <Text color={nbtheme.colors.primary["600"]} fontSize={18}>
+                                    Finalize
                                 </Text>
                             </HStack>
                         </Pressable>
                     </VStack>
                 </VStack>
             </ScrollView>
+
             <Pressable onPress={(): void => navigation.navigate("Profile" as never)}>
                 <Stack direction={"row"} py="6" justifyContent={"center"} bg="darkBlue.900" space={3}>
                     <Avatar

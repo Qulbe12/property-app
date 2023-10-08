@@ -8,6 +8,7 @@ const Main = () => {
     const {user, firebaseConfig} = useAuth()
     if (user) {
         if (user?.displayName === null) {
+
             return (
                 <ProfileSetup/>
             )

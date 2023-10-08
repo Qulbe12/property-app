@@ -13,6 +13,10 @@ import PropertyForRent from "../components/screens/PropertyForRent";
 import Results from "../components/screens/Results";
 import Contact from "../components/screens/Contact";
 import HomeInfo from "../components/screens/HomeInfo";
+import ContactList from "../components/screens/ContactList";
+import Finalize from "../components/screens/Finalize";
+
+
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -84,6 +88,25 @@ const DrawerNavigation = () => {
                     headerShown: false,
                 }}
                 component={HomeInfo}
+            />
+
+             <Drawer.Screen
+                name="ContactList"
+                options={{
+                    title: "ContactList",
+                    headerShown: false,
+                }}
+                component={ContactList}
+                />
+
+            <Drawer.Screen
+                name="Finalize"
+                options={{
+                    title: "Finalize",
+                    headerShown: false,
+                }}
+                component={Finalize}
+
             />
 
         </Drawer.Navigator>

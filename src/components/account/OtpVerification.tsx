@@ -24,20 +24,16 @@ const OtpVerification = () => {
             const credential = PhoneAuthProvider.credential(creds.id, form.otp)
             signInWithCredential(auth, credential)
                 .then(async (result) => {
-                    console.log("after otp", result.user)
                     await updateEmail(result.user, `${creds.phone}@mail.com`)
                         .then(() => {
-                            console.log("email updated")
                         })
                         .catch((reason) => {
-                            console.log("error on updating email", reason)
                         })
                     await updatePassword(result.user, creds.password)
                         .then(() => {
-                            console.log("password setup")
                         })
                         .catch((reason) => {
-                            console.log("password setup error", reason)
+
                         })
                 })
                 .catch((reason) => {
@@ -53,7 +49,6 @@ const OtpVerification = () => {
             .validate(form)
             .then(() => {
                 completeSignUp()
-                console.log(form)
             })
             .catch((err: yup.ValidationError) => {
                 if (!err.path) return;

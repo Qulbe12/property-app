@@ -26,10 +26,9 @@ const OtpVerification = () => {
                 .then((result) => {
                     updatePassword(result.user, creds.password)
                         .then(() => {
-                            console.log("password updated")
+
                         })
                         .catch((reason) => {
-                            console.log("error on password change", reason)
                         })
                 })
         }
