@@ -7,12 +7,12 @@ const ContactList = () => {
             <VStack py={10} flex={1}>
                 <Center>
                     <Box>
-                        <Input placeholder="Search" w="60%" borderRadius="10" px="2" borderColor="orange.600"      ></Input>
+                        <Input placeholder="Search" w="60%" borderRadius="full" px="2" borderColor="orange.600"      ></Input>
                     </Box>
                 </Center>
                 <VStack py={10} flex={1} space={4}>
                     <HStack flex={1} space={5}   >
-                        <Box bg="orange.600" h="90%" borderRadius="50" w="17%" justifyContent="center" mt={1} left={2}  >
+                        <Box bg="orange.600" h="90%" borderRadius="full" w="17%" justifyContent="center" mt={1} left={2}  >
                             <Center>
                                 <Text fontSize="xl" fontWeight="bold" color="white">AK</Text>
                             </Center>
@@ -23,7 +23,7 @@ const ContactList = () => {
                         </VStack>
                     </HStack>
                     <HStack flex={1} space={5}   >
-                        <Box bg="orange.600" h="90%" borderRadius="50" w="17%" justifyContent="center" mt={1} left={2} >
+                        <Box bg="orange.600" h="90%" borderRadius="full" w="17%" justifyContent="center" mt={1} left={2} >
                             <Center>
                                 <Text fontSize="xl" fontWeight="bold" color="white">AK</Text>
                             </Center>
@@ -34,7 +34,7 @@ const ContactList = () => {
                         </VStack>
                     </HStack>
                     <HStack flex={1} space={5}  >
-                        <Box bg="orange.600" h="90%" borderRadius="50" w="17%" justifyContent="center" mt={1} left={2}  >
+                        <Box bg="orange.600" h="90%" borderRadius="full" w="17%" justifyContent="center" mt={1} left={2}  >
                             <Center>
                                 <Text fontSize="xl" fontWeight="bold" color="white">AK</Text>
                             </Center>
@@ -45,7 +45,7 @@ const ContactList = () => {
                         </VStack>
                     </HStack>
                     <HStack flex={1} space={5}  >
-                        <Box bg="orange.600" h="90%" borderRadius="50" w="17%" justifyContent="center" mt={1} left={2}  >
+                        <Box bg="orange.600" h="90%" borderRadius="full" w="17%" justifyContent="center" mt={1} left={2}  >
                             <Center>
                                 <Text fontSize="xl" fontWeight="bold" color="white">AK</Text>
                             </Center>
@@ -56,7 +56,7 @@ const ContactList = () => {
                         </VStack>
                     </HStack>
                     <HStack flex={1} space={5}  >
-                        <Box bg="orange.600" h="90%" borderRadius="50" w="17%" justifyContent="center" mt={1} left={2} >
+                        <Box bg="orange.600" h="90%" borderRadius="full" w="17%" justifyContent="center" mt={1} left={2} >
                             <Center>
                                 <Text fontSize="xl" fontWeight="bold" color="white">AK</Text>
                             </Center>
@@ -67,13 +67,13 @@ const ContactList = () => {
                         </VStack>
                     </HStack>
                     <HStack flex={1} space={5}  >
-                        <Box bg="orange.600" h="90%" borderRadius="50" w="17%" justifyContent="center" mt={1} left={2} >
+                        <Box bg="orange.600" h="90%" borderRadius="full" w="17%" justifyContent="center" mt={1} left={2} >
                             <Center>
                                 <Text fontSize="xl" fontWeight="bold" color="white">AK</Text>
                             </Center>
                         </Box>
-                        <VStack h="47" w="20%" justifyContent="center" my={3}    >
-                            <Text fontSize="xl"    >Alex Kade</Text>
+                        <VStack h="47" w="30%" justifyContent="center" my={3}    >
+                            <Text w="100%" fontSize="xl">Alex Kade</Text>
                             <Text fontWeight="hairline" fontSize="md" color="gray.900">03*********</Text>
                         </VStack>
                     </HStack>

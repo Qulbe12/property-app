@@ -15,7 +15,7 @@ const HomeInfo = () => {
                 <Heading fontSize="md" fontWeight="bold">Entire Bromo mountain view Cabin in Surabaya</Heading>
             </Center>
             <HStack space={2} px={5} py={1}>
-                <Image alt='Current Owner of Property' source={require("../../../assets/Client1.png")} size="10" borderRadius="50%" />
+                <Image alt='Current Owner of Property' source={require("../../../assets/Client1.png")} size="10" borderRadius="lg" />
                 <VStack>
                     <Text fontSize="xs" fontWeight="medium">Umar Usman</Text>
                     <Text fontSize={8} fontWeight="default">Property owner</Text>

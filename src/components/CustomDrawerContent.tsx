@@ -97,7 +97,7 @@ const CustomDrawerContent = () => {
                             </HStack>
                         </Pressable>
                     </VStack>
-                </VStack>
+
             </ScrollView>
 
             <Pressable onPress={(): void => navigation.navigate("Profile" as never)}>
