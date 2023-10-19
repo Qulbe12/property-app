@@ -14,6 +14,7 @@ import Contact from "../components/screens/Contact";
 import HomeInfo from "../components/screens/HomeInfo";
 import ContactList from "../components/screens/ContactList";
 import Finalize from "../components/screens/Finalize";
+import {nbtheme} from "../config/theme";
 
 
 const Drawer = createDrawerNavigator();
@@ -31,9 +32,9 @@ const DrawerNavigation = () => {
                     return (
                         <Pressable onPress={navigation.toggleDrawer}>
                             <VStack space={1} ml={4}>
-                                <Divider w={"24px"} bgColor={"#CF4DCB"} borderRadius={5} h={"2px"}/>
-                                <Divider w={"24px"} bgColor={"#CF4DCB"} borderRadius={5} h={"2px"}/>
-                                <Divider w={"10px"} bgColor={"#CF4DCB"} borderRadius={5} h={"2px"}/>
+                                <Divider w={"24px"} bgColor={nbtheme.colors.primary["600"]} borderRadius={5} h={"2px"}/>
+                                <Divider w={"24px"} bgColor={nbtheme.colors.primary["600"]} borderRadius={5} h={"2px"}/>
+                                <Divider w={"10px"} bgColor={nbtheme.colors.primary["600"]} borderRadius={5} h={"2px"}/>
                             </VStack>
                         </Pressable>
                     );
