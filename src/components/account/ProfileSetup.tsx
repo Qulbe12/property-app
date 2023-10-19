@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import {auth} from "../../config/firebaseConf";
 import {useAppDispatch} from "../../redux/Store";
 import {addUser} from "../../redux/account/actions/userActions";
+import saveUser from "../../firebase/saveUser";
 
 
 const schema = yup.object().shape({
@@ -41,7 +42,7 @@ const ProfileSetup = () => {
             try {
                 const res = updateProfile(user, {displayName: form.name, photoURL: form.image})
                 console.log("success", res)
-                dispatch(addUser({name: user.displayName , phone: user.phoneNumber}))
+                dispatch(addUser({name: user.displayName, phone: user.phoneNumber}))
                 await signOut(auth)
             } catch (e) {
                 console.log("error", e)
@@ -53,6 +54,7 @@ const ProfileSetup = () => {
             .validate(form)
             .then(async () => {
                 await updateUserProfile()
+                await saveUser(user?.uid, user?.displayName, user?.phoneNumber)
             })
             .catch((err: yup.ValidationError) => {
                 if (!err.path) return;
