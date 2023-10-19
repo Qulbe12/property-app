@@ -1,79 +1,93 @@
 import React from 'react';
-import { Center, Text, Image, ScrollView, Heading, HStack, VStack, Button, Divider, Box, Switch, Card, Icon, Input } from "native-base";
-import { Entypo } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { Feather } from '@expo/vector-icons';
+import {
+    Box,
+    Button,
+    Card,
+    Center,
+    Divider,
+    Heading,
+    HStack,
+    Icon,
+    Image,
+    ScrollView,
+    Switch,
+    Text,
+    VStack
+} from "native-base";
+import {Entypo, Feather, FontAwesome5, Ionicons, MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons';
+import {useNavigation} from "@react-navigation/native";
 
 const HomeInfo = () => {
+    const navigation = useNavigation()
     return (
         <ScrollView mb={8}>
-            <Image alt='House for sale/Rent' source={require("../../../assets/Picture.png")} size='2xl' w="100%" />
+            <Image alt='House for sale/Rent' source={require("../../../assets/Picture.png")} size='2xl' w="100%"/>
             <Center py={1}>
                 <Heading fontSize="md" fontWeight="bold">Entire Bromo mountain view Cabin in Surabaya</Heading>
             </Center>
             <HStack space={2} px={5} py={1}>
-                <Image alt='Current Owner of Property' source={require("../../../assets/Client1.png")} size="10" borderRadius="lg" />
+                <Image alt='Current Owner of Property' source={require("../../../assets/Client1.png")} size="10"
+                       borderRadius="lg"/>
                 <VStack>
                     <Text fontSize="xs" fontWeight="medium">Umar Usman</Text>
                     <Text fontSize={8} fontWeight="default">Property owner</Text>
                 </VStack>
-                <Button left="35%" borderRadius={8}>contact</Button>
+                <Button left="35%" borderRadius={8} onPress={() => {
+                    navigation.navigate("Contact" as never)
+                }}>contact</Button>
             </HStack>
-            <Divider my={2} />
+            <Divider my={2}/>
             <Box px={5} py={2}>
                 <Heading fontSize="md" fontWeight="bold" color="#ea580c">Home Facilities</Heading>
             </Box>
             <HStack w='100%' my={2} space={4}>
                 <HStack w='50%' justifyContent="space-between">
                     <Text px={4} fontWeight="semibold">Electricity</Text>
-                    <Switch offThumbColor="black" />
+                    <Switch offThumbColor="black"/>
                 </HStack>
                 <HStack w='50%' justifyContent="space-between">
                     <Text fontWeight="semibold">Internet</Text>
-                    <Switch right={8} offThumbColor="black" />
+                    <Switch right={8} offThumbColor="black"/>
                 </HStack>
             </HStack>
             <HStack w='100%' my={2} space={4}>
                 <HStack w='50%' justifyContent="space-between">
                     <Text px={4} fontWeight="semibold">Gas</Text>
-                    <Switch offThumbColor="black" />
+                    <Switch offThumbColor="black"/>
                 </HStack>
                 <HStack w='50%' justifyContent="space-between">
                     <Text fontWeight="semibold">Cable Tv</Text>
-                    <Switch right={8} offThumbColor="black" />
+                    <Switch right={8} offThumbColor="black"/>
                 </HStack>
             </HStack>
             <HStack w='100%' my={2} space={4}>
                 <HStack w='50%' justifyContent="space-between">
                     <Text px={4} fontWeight="semibold">Cleanliness</Text>
-                    <Switch offThumbColor="black" />
+                    <Switch offThumbColor="black"/>
                 </HStack>
                 <HStack w='50%' justifyContent="space-between">
                     <Text fontWeight="semibold">Security</Text>
-                    <Switch right={8} offThumbColor="black" />
+                    <Switch right={8} offThumbColor="black"/>
                 </HStack>
             </HStack>
             <HStack w='100%' my={2} space={4}>
                 <HStack w='50%' justifyContent="space-between">
                     <Text px={4} fontWeight="semibold">Furnished</Text>
-                    <Switch offThumbColor="black" />
+                    <Switch offThumbColor="black"/>
                 </HStack>
                 <HStack w='50%' justifyContent="space-between">
                     <Text fontWeight="semibold">Severge</Text>
-                    <Switch right={8} offThumbColor="black" />
+                    <Switch right={8} offThumbColor="black"/>
                 </HStack>
             </HStack>
             <HStack w='100%' my={2} space={4}>
                 <HStack w='50%' justifyContent="space-between">
                     <Text px={4} fontWeight="semibold">Carpetroad</Text>
-                    <Switch offThumbColor="black" />
+                    <Switch offThumbColor="black"/>
                 </HStack>
                 <HStack w='50%' justifyContent="space-between">
                     <Text fontWeight="semibold">Changed S</Text>
-                    <Switch right={8} offThumbColor="black" />
+                    <Switch right={8} offThumbColor="black"/>
                 </HStack>
             </HStack>
             <Box px={5} py={4}>
@@ -82,41 +96,41 @@ const HomeInfo = () => {
             <Center>
                 <HStack w='100%' my={2}>
                     <HStack w='50%' px={4} space={2}>
-                        <Entypo name="location-pin" size={24} color="#ea580c" />
+                        <Entypo name="location-pin" size={24} color="#ea580c"/>
                         <Text>DHA, Multan</Text>
                     </HStack>
                     <HStack w='50%' px={4} space={2}>
-                        <Ionicons name="bed" size={24} color="#ea580c" />
+                        <Ionicons name="bed" size={24} color="#ea580c"/>
                         <Text>2 room</Text>
                     </HStack>
                 </HStack>
                 <HStack w='100%' my={2}>
                     <HStack w='50%' px={4} space={2}>
-                        <MaterialCommunityIcons name="home-analytics" size={24} color="#ea580c" />
+                        <MaterialCommunityIcons name="home-analytics" size={24} color="#ea580c"/>
                         <Text>874 m2</Text>
                     </HStack>
                     <HStack w='50%' px={4} space={2}>
-                        <FontAwesome5 name="hands-wash" size={24} color="#ea580c" />
+                        <FontAwesome5 name="hands-wash" size={24} color="#ea580c"/>
                         <Text>2 Washroom</Text>
                     </HStack>
                 </HStack>
                 <HStack w='100%' my={2}>
                     <HStack w='50%' px={4} space={2}>
-                        <MaterialIcons name="connected-tv" size={24} color="#ea580c" />
+                        <MaterialIcons name="connected-tv" size={24} color="#ea580c"/>
                         <Text>Tv Lounge</Text>
                     </HStack>
                     <HStack w='50%' px={4} space={2}>
-                        <MaterialCommunityIcons name="bed-single" size={24} color="#ea580c" />
+                        <MaterialCommunityIcons name="bed-single" size={24} color="#ea580c"/>
                         <Text>3 Terrace</Text>
                     </HStack>
                 </HStack>
                 <HStack w='100%' my={2}>
                     <HStack w='50%' px={4} space={2}>
-                        <MaterialIcons name="kitchen" size={24} color="#ea580c" />
+                        <MaterialIcons name="kitchen" size={24} color="#ea580c"/>
                         <Text>2 Kitchen</Text>
                     </HStack>
                     <HStack w='50%' px={4} space={2}>
-                        <Feather name="square" size={24} color="#ea580c" />
+                        <Feather name="square" size={24} color="#ea580c"/>
                         <Text>Open Space</Text>
                     </HStack>
                 </HStack>
@@ -126,10 +140,10 @@ const HomeInfo = () => {
             </Box>
             <Center>
                 <Card my={2} bg="contrastThreshold" w="90%">
-                    <HStack w="100%" color="white" space={3} divider={<Divider />}>
-                        <VStack justifyContent="space-between" w="32%" >
+                    <HStack w="100%" color="white" space={3} divider={<Divider/>}>
+                        <VStack justifyContent="space-between" w="32%">
                             <Text bold>Floor 1</Text>
-                            <Icon name="arrow-forward" />
+                            <Icon name="arrow-forward"/>
                             <VStack space={9}>
                                 <Text>Bedrooms</Text>
                                 <Text>Washroom</Text>
@@ -139,7 +153,7 @@ const HomeInfo = () => {
                         </VStack>
                         <VStack justifyContent="space-between" w="30%">
                             <Text bold>Number.</Text>
-                            <Icon name="arrow-forward" />
+                            <Icon name="arrow-forward"/>
                             <VStack space={9}>
                                 <Text>2</Text>
                                 <Text>2</Text>
@@ -149,7 +163,7 @@ const HomeInfo = () => {
                         </VStack>
                         <VStack justifyContent="space-between" w="30%">
                             <Text bold>Area</Text>
-                            <Icon name="arrow-forward" />
+                            <Icon name="arrow-forward"/>
                             <VStack space={9}>
                                 <Text>44/20m</Text>
                                 <Text>44/20m</Text>
@@ -184,7 +198,9 @@ const HomeInfo = () => {
                     </HStack>
                     <Text underline>Payment estimation</Text>
                 </VStack>
-                <Button borderRadius={10}>Contact</Button>
+                <Button onPress={() => {
+                    navigation.navigate("Contact" as never)
+                }} borderRadius={10}>Contact</Button>
             </HStack>
         </ScrollView>
     );

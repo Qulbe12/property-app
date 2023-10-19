@@ -2,14 +2,16 @@ import React, {useEffect, useState} from 'react';
 import {Box, Button, Center, FormControl, Heading, HStack, Input, useToast, VStack} from "native-base";
 import * as yup from "yup";
 import {useNavigation} from "@react-navigation/native";
+import savePropertyOwner from "../../firebase/savePropertyOwner";
+import useAuth from "../../hooks/useAuth";
 
 const schema = yup.object().shape({
     name: yup.string().required("name is required"),
     phone: yup.string().required("phone is required"),
     areaUnit: yup.string().required("area unit is required"),
     areaSize: yup.string().required("area size is required"),
-    frontLenght: yup.string().required("front length is required"),
-    sideLenght: yup.string().required("side length is required"),
+    frontLength: yup.string().required("front length is required"),
+    sideLength: yup.string().required("side length is required"),
 })
 const AddProperty = () => {
     const toast = useToast()
@@ -20,13 +22,15 @@ const AddProperty = () => {
         phone: "",
         areaUnit: "",
         areaSize: "",
-        frontLenght: "",
-        sideLenght: "",
+        frontLength: "",
+        sideLength: "",
         otherFeatures: ""
     })
+    const {user} = useAuth()
 
-    const handleNext = () => {
+    const handleNext = async () => {
         navigation.navigate("floorPlan" as never)
+        await savePropertyOwner(user?.uid, form.name, form.phone)
         console.log(form)
     }
 
@@ -94,7 +98,7 @@ const AddProperty = () => {
                             <FormControl.Label>Front length</FormControl.Label>
                             <Input placeholder="8000m" keyboardType="number-pad" maxLength={11}
                                    onChangeText={(v) => {
-                                       setForm({...form, frontLenght: v})
+                                       setForm({...form, frontLength: v})
                                    }}/>
                             <FormControl.ErrorMessage>{errors.frontLength}</FormControl.ErrorMessage>
                         </FormControl>
@@ -102,7 +106,7 @@ const AddProperty = () => {
                             <FormControl.Label>Side length</FormControl.Label>
                             <Input placeholder="8000m" keyboardType="number-pad" maxLength={11}
                                    onChangeText={(v) => {
-                                       setForm({...form, sideLenght: v})
+                                       setForm({...form, sideLength: v})
                                    }}/>
                             <FormControl.ErrorMessage>{errors.sideLength}</FormControl.ErrorMessage>
                         </FormControl>
