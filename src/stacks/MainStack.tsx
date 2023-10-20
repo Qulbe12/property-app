@@ -49,14 +49,6 @@ const DrawerNavigation = () => {
                 component={Results}
             />
             <Drawer.Screen
-                name="AddProperty"
-                options={{
-                    title: "Property",
-                    headerShown: true,
-                }}
-                component={AddProperty}
-            />
-            <Drawer.Screen
                 name="PropertyForRent"
                 options={{
                     title: "Properties",
@@ -120,6 +112,14 @@ const MainStack = () => {
                     headerShown: true,
                 }}
                 component={Contact}
+            />
+            <Stack.Screen
+                name="AddProperty"
+                options={{
+                    title: "Property",
+                    headerShown: true,
+                }}
+                component={AddProperty}
             />
             {/*<Stack.Screen*/}
             {/*    options={{headerShown: false, title: "Profile"}}*/}
