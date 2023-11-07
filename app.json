@@ -4,10 +4,10 @@
     "slug": "dealer-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/property.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/property.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,13 +22,13 @@
     "android": {
       "google-services.json": "android.googleServicesFile",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/property.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.qulbe.dealerapp"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/property.png"
     },
     "plugins": [
       [

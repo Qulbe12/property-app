@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { Box, Button, Center, FormControl, Heading, HStack, Input, ScrollView, Switch, Text, VStack } from "native-base";
+import React, {useState} from 'react';
+import {Box, Button, Center, FormControl, Heading, HStack, Input, ScrollView, Switch, Text, VStack} from "native-base";
+import {useNavigation} from "@react-navigation/native";
 
 const PropertyFeatures = () => {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const navigation = useNavigation()
     return (
         <ScrollView>
             <Center flex={1} w="100%">
@@ -11,61 +13,63 @@ const PropertyFeatures = () => {
                     <Heading>Features</Heading>
                     <FormControl>
                         <FormControl.Label>Road size</FormControl.Label>
-                        <Input keyboardType="name-phone-pad" />
+                        <Input keyboardType="name-phone-pad"/>
                     </FormControl>
                     <VStack my={4}>
                         <HStack justifyContent="space-between">
-                            <Text my={2}>Electricity</Text>
-                            <Switch my={2} offThumbColor="black" />
+                            <Text>Electricity</Text>
+                            <Switch offThumbColor="black"/>
                         </HStack>
                         <HStack justifyContent="space-between">
-                            <Text my={2}>Cable Tv</Text>
-                            <Switch my={2} offThumbColor="black" />
+                            <Text>Cable Tv</Text>
+                            <Switch offThumbColor="black"/>
                         </HStack>
                         <HStack justifyContent="space-between">
-                            <Text my={2}>Carpet Road</Text>
-                            <Switch my={2} offThumbColor="black" />
+                            <Text>Carpet Road</Text>
+                            <Switch offThumbColor="black"/>
                         </HStack>
                         <HStack justifyContent="space-between">
-                            <Text my={2}>Cleanliness</Text>
-                            <Switch my={2} offThumbColor="black" />
+                            <Text>Cleanliness</Text>
+                            <Switch offThumbColor="black"/>
                         </HStack>
                         <HStack justifyContent="space-between">
-                            <Text my={2}>Internet</Text>
-                            <Switch my={2} offThumbColor="black" />
+                            <Text>Internet</Text>
+                            <Switch offThumbColor="black"/>
                         </HStack>
                         <HStack justifyContent="space-between">
-                            <Text my={2}>Security</Text>
-                            <Switch my={2} offThumbColor="black" />
+                            <Text>Security</Text>
+                            <Switch offThumbColor="black"/>
                         </HStack>
                         <HStack justifyContent="space-between">
-                            <Text my={2}>Furnished</Text>
-                            <Switch my={2} offThumbColor="black" />
+                            <Text>Furnished</Text>
+                            <Switch offThumbColor="black"/>
                         </HStack>
                         <HStack justifyContent="space-between">
-                            <Text my={2}>Gas</Text>
-                            <Switch my={2} offThumbColor="black" />
+                            <Text>Gas</Text>
+                            <Switch offThumbColor="black"/>
                         </HStack>
                         <HStack justifyContent="space-between">
-                            <Text my={2}>Security Changes</Text>
-                            <Switch my={2} offThumbColor="black" />
+                            <Text>Security Changes</Text>
+                            <Switch offThumbColor="black"/>
                         </HStack>
                         <HStack justifyContent="space-between">
-                            <Text my={2}>Sewerage</Text>
-                            <Switch my={2} offThumbColor="black" />
+                            <Text>Sewerage</Text>
+                            <Switch offThumbColor="black"/>
                         </HStack>
                         <HStack justifyContent="space-between">
                             <FormControl w="46%">
                                 <FormControl.Label>Garage Size</FormControl.Label>
-                                <Input keyboardType="number-pad" />
+                                <Input keyboardType="number-pad"/>
                             </FormControl>
                             <FormControl w="46%">
                                 <FormControl.Label>Garage Capacity</FormControl.Label>
-                                <Input keyboardType="number-pad" />
+                                <Input keyboardType="number-pad"/>
                             </FormControl>
                         </HStack>
                     </VStack>
-                    <Button alignSelf="center" w="50%">Next</Button>
+                    <Button onPress={() => {
+                        navigation.navigate("finalize" as never)
+                    }} alignSelf="center" w="50%">Next</Button>
                 </Box>
             </Center>
         </ScrollView>

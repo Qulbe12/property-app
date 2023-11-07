@@ -4,7 +4,6 @@ import {useNavigation} from "@react-navigation/native";
 import CustomDrawerContent from "../components/CustomDrawerContent";
 import React from 'react';
 import Home from "../components/dashboard/Home";
-import WelcomeScreen from "../components/screens/WelcomeScreen";
 import {Divider, Pressable, VStack} from "native-base";
 import AddProperty from "../components/screens/AddProperty";
 import PropertyFloorPlan from "../components/screens/PropertyFloorPlan";
@@ -15,7 +14,7 @@ import Contact from "../components/screens/Contact";
 import HomeInfo from "../components/screens/HomeInfo";
 import ContactList from "../components/screens/ContactList";
 import Finalize from "../components/screens/Finalize";
-
+import {nbtheme} from "../config/theme";
 
 
 const Drawer = createDrawerNavigator();
@@ -33,9 +32,9 @@ const DrawerNavigation = () => {
                     return (
                         <Pressable onPress={navigation.toggleDrawer}>
                             <VStack space={1} ml={4}>
-                                <Divider w={"24px"} bgColor={"#CF4DCB"} borderRadius={5} h={"2px"}/>
-                                <Divider w={"24px"} bgColor={"#CF4DCB"} borderRadius={5} h={"2px"}/>
-                                <Divider w={"10px"} bgColor={"#CF4DCB"} borderRadius={5} h={"2px"}/>
+                                <Divider w={"24px"} bgColor={nbtheme.colors.primary["600"]} borderRadius={5} h={"2px"}/>
+                                <Divider w={"24px"} bgColor={nbtheme.colors.primary["600"]} borderRadius={5} h={"2px"}/>
+                                <Divider w={"10px"} bgColor={nbtheme.colors.primary["600"]} borderRadius={5} h={"2px"}/>
                             </VStack>
                         </Pressable>
                     );
@@ -45,68 +44,25 @@ const DrawerNavigation = () => {
                 name="welcome"
                 options={{
                     title: "welcome",
-                    headerShown: false,
-                }}
-                component={WelcomeScreen}
-            />
-            <Drawer.Screen
-                name="AddProperty"
-                options={{
-                    title: "Property",
-                    headerShown: false,
-                }}
-                component={AddProperty}
-            />
-             <Drawer.Screen
-                name="PropertyForRent"
-                options={{
-                    title: "Rent",
-                    headerShown: false,
-                }}
-                component={PropertyForRent}
-            />
-             <Drawer.Screen
-                name="Results"
-                options={{
-                    title: "Result",
-                    headerShown: false,
+                    headerShown: true,
                 }}
                 component={Results}
             />
-             <Drawer.Screen
-                name="Contact"
+            <Drawer.Screen
+                name="PropertyForRent"
                 options={{
-                    title: "Contact",
-                    headerShown: false,
+                    title: "Properties",
+                    headerShown: true,
                 }}
-                component={Contact}
+                component={PropertyForRent}
             />
             <Drawer.Screen
-                name="HomeInfo"
-                options={{
-                    title: "HomeInfo",
-                    headerShown: false,
-                }}
-                component={HomeInfo}
-            />
-
-             <Drawer.Screen
                 name="ContactList"
                 options={{
                     title: "ContactList",
-                    headerShown: false,
+                    headerShown: true,
                 }}
                 component={ContactList}
-                />
-
-            <Drawer.Screen
-                name="Finalize"
-                options={{
-                    title: "Finalize",
-                    headerShown: false,
-                }}
-                component={Finalize}
-
             />
 
         </Drawer.Navigator>
@@ -127,14 +83,43 @@ const MainStack = () => {
                 component={Home}
             />
             <Stack.Screen
-                options={{headerShown: false, title: "Profile"}}
+                options={{headerShown: true, title: "Floor Plan"}}
                 name="floorPlan"
                 component={PropertyFloorPlan}
             />
             <Stack.Screen
-                options={{headerShown: false, title: "Profile"}}
+                options={{headerShown: true, title: "Property Features"}}
                 name="propertyFeatures"
                 component={PropertyFeatures}
+            />
+            <Stack.Screen
+                options={{headerShown: true, title: "Finalize"}}
+                name="finalize"
+                component={Finalize}
+            />
+            <Stack.Screen
+                name="HomeInfo"
+                options={{
+                    title: "Property Information",
+                    headerShown: true,
+                }}
+                component={HomeInfo}
+            />
+            <Stack.Screen
+                name="Contact"
+                options={{
+                    title: "Contact",
+                    headerShown: true,
+                }}
+                component={Contact}
+            />
+            <Stack.Screen
+                name="AddProperty"
+                options={{
+                    title: "Property",
+                    headerShown: true,
+                }}
+                component={AddProperty}
             />
             {/*<Stack.Screen*/}
             {/*    options={{headerShown: false, title: "Profile"}}*/}

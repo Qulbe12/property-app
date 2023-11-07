@@ -5,7 +5,6 @@ import {colorModeManager, navTheme, nbtheme} from "./src/config/theme";
 import {Provider} from "react-redux";
 import store from "./src/redux/Store";
 import {useKeepAwake} from 'expo-keep-awake';
-import {SafeAreaView} from "react-native-safe-area-context";
 
 
 export default function App() {
@@ -14,11 +13,9 @@ export default function App() {
 
         <NavigationContainer theme={navTheme}>
             <NativeBaseProvider theme={nbtheme} colorModeManager={colorModeManager}>
-                <SafeAreaView style={{flex: 1}}>
-                    <Provider store={store}>
-                        <Main/>
-                    </Provider>
-                </SafeAreaView>
+                <Provider store={store}>
+                    <Main/>
+                </Provider>
             </NativeBaseProvider>
         </NavigationContainer>
     );
