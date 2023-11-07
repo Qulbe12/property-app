@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {Box, Button, Center, FormControl, Heading, HStack, Input, useToast, VStack} from "native-base";
 import * as yup from "yup";
 import {useNavigation} from "@react-navigation/native";
-import savePropertyOwner from "../../firebase/savePropertyOwner";
 import useAuth from "../../hooks/useAuth";
 
 const schema = yup.object().shape({
@@ -30,7 +29,7 @@ const AddProperty = () => {
 
     const handleNext = async () => {
         navigation.navigate("floorPlan" as never)
-        await savePropertyOwner(user?.uid, form.name, form.phone)
+        // await savePropertyOwner(user?.uid, form.name, form.phone)
         console.log(form)
     }
 
